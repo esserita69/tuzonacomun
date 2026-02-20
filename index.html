@@ -475,7 +475,7 @@ footer{background:var(--ink);padding:44px 60px;}
       <div class="contacto-items">
         <div class="contacto-item-row"><div class="contacto-item-icon">📍</div><div class="contacto-item-body"><h5>Dirección</h5><p>C/ Argantonio, Local Bajo Dcho.<br>Edificio Tres Reyes · 21003 Huelva</p></div></div>
         <div class="contacto-item-row"><div class="contacto-item-icon">📞</div><div class="contacto-item-body"><h5>Teléfono</h5><a href="tel:+34959261488">959 261 488</a></div></div>
-        <div class="contacto-item-row"><div class="contacto-item-icon">✉</div><div class="contacto-item-body"><h5>Correo electrónico</h5><a href="/cdn-cgi/l/email-protection#a8c1c6cec7e8dcddd2c7c6c9cbc7c5ddc686cbc7c5"><span class="__cf_email__" data-cfemail="0e676068614e7a7b7461606f6d61637b60206d6163">[email&#160;protected]</span></a><a href="/cdn-cgi/l/email-protection#d4bea1a6bdb0bdb7bb94a0a1aebbbab5b7bbb9a1bafab7bbb9"><span class="__cf_email__" data-cfemail="432936312a272a202c033736392c2d22202c2e362d6d202c2e">[email&#160;protected]</span></a><a href="/cdn-cgi/l/email-protection#f9989d949097908a8d8b989a909697b98d8c839697989a96948c97d79a9694"><span class="__cf_email__" data-cfemail="c6a7a2abafa8afb5b2b4a7a5afa9a886b2b3bca9a8a7a5a9abb3a8e8a5a9ab">[email&#160;protected]</span></a></div></div>
+        <div class="contacto-item-row"><div class="contacto-item-icon">✉</div><div class="contacto-item-body"><h5>Correo electrónico</h5><a href="mailto:info@tuzonacomun.com">info@tuzonacomun.com</a><a href="mailto:administracion@tuzonacomun.com">administracion@tuzonacomun.com</a><a href="mailto:juridico@tuzonacomun.com">juridico@tuzonacomun.com</a></div></div>
         <div class="contacto-item-row"><div class="contacto-item-icon">🌐</div><div class="contacto-item-body"><h5>Web</h5><a href="https://www.tuzonacomun.com">www.tuzonacomun.com</a></div></div>
       </div>
     </div>
@@ -510,7 +510,7 @@ footer{background:var(--ink);padding:44px 60px;}
     <h4>¿Necesita ayuda?</h4>
     <p>Contáctenos directamente o acceda al portal de propietarios.</p>
     <a href="tel:+34959261488">📞 Llamar: 959 261 488</a>
-    <a href="/cdn-cgi/l/email-protection#88e1e6eee7c8fcfdf2e7e6e9ebe7e5fde6a6ebe7e5">✉ Enviar email</a>
+    <a href="mailto:info@tuzonacomun.com">✉ Enviar email</a>
   </div>
   <div class="chat-pulse"></div>
   <button class="chat-btn" onclick="toggleChat()">
@@ -542,4 +542,16 @@ function calcularCuota(){
   r.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function enviarFormulario(){
-  if(!document.getElementById('fNombre').value||!document.getElementById('fContacto').value)
+  const nombre=document.getElementById('fNombre').value;
+  const contacto=document.getElementById('fContacto').value;
+  const asunto=document.getElementById('fAsunto').value;
+  const mensaje=document.getElementById('fMensaje').value;
+  if(!nombre||!contacto){alert('Por favor, rellena al menos el nombre y el teléfono/email.');return;}
+  const cuerpo=`Nombre: ${nombre}\nTeléfono/Email: ${contacto}\n\nMensaje:\n${mensaje}`;
+  const mailtoLink=`mailto:info@tuzonacomun.com?subject=${encodeURIComponent('Web - '+asunto)}&body=${encodeURIComponent(cuerpo)}`;
+  window.location.href=mailtoLink;
+  setTimeout(()=>{document.getElementById('formSuccess').style.display='block';},500);
+}
+</script>
+</body>
+</html>
